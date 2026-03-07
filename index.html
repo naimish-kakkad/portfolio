@@ -1,123 +1,1232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Naimish Kakkad | Principal Architect</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* --- Global Styles --- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #111; line-height: 1.6; }
-    a { text-decoration: none; color: #0a66c2; }
-    section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; }
-    h1, h2, h3 { margin-bottom: 20px; }
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; color: #0a66c2; }
-    h3 { font-size: 1.5rem; }
-    p { margin-bottom: 15px; }
-    button { padding: 10px 20px; background: #0a66c2; color: white; border: none; border-radius: 5px; cursor: pointer; }
-    button:hover { background: #084c8d; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Naimish Kakkad — Payments & API Architecture Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* --- Header / Hero --- */
-    header { background: #0a66c2; color: white; padding: 100px 20px; text-align: center; }
-    header h1 { font-size: 3rem; }
-    header p { font-size: 1.2rem; margin-top: 10px; }
+:root {
+  --ivory:     #f8f6f1;
+  --white:     #ffffff;
+  --ink:       #161616;
+  --ink-75:    rgba(22,22,22,0.75);
+  --ink-50:    rgba(22,22,22,0.50);
+  --ink-20:    rgba(22,22,22,0.20);
+  --ink-08:    rgba(22,22,22,0.08);
+  --copper:    #a85c24;
+  --copper-l:  #c97838;
+  --copper-bg: rgba(168,92,36,0.07);
+  --copper-bdr:rgba(168,92,36,0.25);
+  --rule:      rgba(22,22,22,0.10);
+  --nav-h:     72px;
+  --body-fs:   16px;
+  --body-lh:   1.75;
+}
 
-    /* --- Sections --- */
-    .skills, .projects, .experience, .contact { background: white; margin-bottom: 40px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 40px 20px; }
-    .skill-list, .project-list, .exp-list { display: flex; flex-wrap: wrap; gap: 15px; }
-    .skill-item, .project-item, .exp-item { flex: 1 1 calc(50% - 20px); background: #f1f1f1; padding: 15px; border-radius: 8px; }
-    .project-item img { max-width: 100%; border-radius: 5px; margin-bottom: 10px; }
+html { scroll-behavior: smooth; font-size: var(--body-fs); }
 
-    /* --- Contact --- */
-    .contact a { display: inline-block; margin-right: 15px; }
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  line-height: var(--body-lh);
+  overflow-x: hidden;
+}
 
-    /* --- Responsive --- */
-    @media(max-width: 768px){
-      .skill-item, .project-item, .exp-item { flex: 1 1 100%; }
-      header h1 { font-size: 2.2rem; }
-    }
-  </style>
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--ivory); }
+::-webkit-scrollbar-thumb { background: var(--copper); }
+
+/* ══════════ NAV ══════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: rgba(248,246,241,0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 64px;
+  z-index: 1000;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--copper); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-50);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--copper); }
+.nav-cta {
+  padding: 9px 22px !important;
+  background: var(--ink) !important;
+  color: var(--ivory) !important;
+  border-radius: 2px;
+  letter-spacing: 1.8px !important;
+}
+.nav-cta:hover { background: var(--copper) !important; color: var(--white) !important; }
+
+/* ══════════ BUTTONS ══════════ */
+.btn {
+  display: inline-block;
+  padding: 15px 34px;
+  font-family: 'Jost', sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.25s;
+  cursor: pointer;
+  border: none;
+}
+.btn-dark { background: var(--ink); color: var(--ivory); }
+.btn-dark:hover { background: var(--copper); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(168,92,36,0.22); }
+.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--ink-20); }
+.btn-outline:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+/* ══════════ HERO ══════════ */
+.hero {
+  padding-top: var(--nav-h);
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: 'PAYMENTS';
+  position: absolute;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(90px, 13vw, 180px);
+  font-weight: 300;
+  letter-spacing: -4px;
+  color: rgba(22,22,22,0.035);
+  bottom: 48px;
+  left: -10px;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 80px 80px 80px;
+  position: relative;
+}
+.hero-left::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 22%; bottom: 22%;
+  width: 3px;
+  background: linear-gradient(to bottom, transparent, var(--copper), transparent);
+}
+.hero-tag {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: fadeUp 0.9s ease both;
+}
+.hero-tag::before { content: ''; width: 36px; height: 1px; background: var(--copper); }
+
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(58px, 7vw, 90px);
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -1px;
+  color: var(--ink);
+  margin-bottom: 10px;
+  animation: fadeUp 0.9s 0.1s ease both;
+}
+.hero-name em { font-style: italic; color: var(--copper); }
+
+.hero-role {
+  font-family: 'Source Serif 4', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ink-75);
+  margin-bottom: 32px;
+  animation: fadeUp 0.9s 0.2s ease both;
+  line-height: 1.5;
+}
+
+.hero-statement {
+  font-family: 'Source Serif 4', serif;
+  font-size: 17px;
+  line-height: 1.80;
+  color: var(--ink-75);
+  max-width: 520px;
+  margin-bottom: 52px;
+  border-left: 2px solid var(--copper-bdr);
+  padding-left: 24px;
+  animation: fadeUp 0.9s 0.3s ease both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  animation: fadeUp 0.9s 0.4s ease both;
+}
+
+/* Hero right panel */
+.hero-right {
+  background: var(--white);
+  border-left: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 48px;
+  animation: fadeUp 0.9s 0.5s ease both;
+}
+.hero-right-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-50);
+  margin-bottom: 36px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.stat-row {
+  padding: 26px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.stat-row:last-of-type { border-bottom: none; }
+.stat-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 54px;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.stat-number sup { font-size: 22px; vertical-align: super; }
+.stat-number .unit { font-size: 22px; color: var(--copper); margin-left: 4px; }
+.stat-label {
+  font-size: 13.5px;
+  color: var(--ink-75);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.location-tag {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12.5px;
+  color: var(--ink-50);
+  letter-spacing: 0.5px;
+}
+.location-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--copper); animation: blink 2s ease infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+/* ══════════ SECTION COMMONS ══════════ */
+section { padding: 100px 80px; }
+
+.section-header { margin-bottom: 60px; }
+.section-kicker {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-kicker::before { content: ''; width: 28px; height: 1px; background: var(--copper); }
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 4.5vw, 56px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+}
+.section-title em { font-style: italic; color: var(--copper); }
+
+/* ══════════ ABOUT ══════════ */
+.about-section {
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-body {
+  font-family: 'Source Serif 4', serif;
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--ink-75);
+}
+.about-body p + p { margin-top: 22px; }
+.about-body strong { color: var(--ink); font-weight: 600; }
+
+.about-pillars { border: 1px solid var(--rule); }
+.pillar {
+  padding: 28px 32px;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.pillar:last-child { border-bottom: none; }
+.pillar::before {
+  content: ''; position: absolute;
+  left: 0; top: 0; bottom: 0; width: 0;
+  background: var(--copper); transition: width 0.3s;
+}
+.pillar:hover { background: var(--copper-bg); }
+.pillar:hover::before { width: 3px; }
+.pillar-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px; color: var(--copper);
+  letter-spacing: 1px; margin-bottom: 6px;
+}
+.pillar-name {
+  font-size: 15px; font-weight: 600;
+  color: var(--ink); margin-bottom: 7px;
+  letter-spacing: 0.2px;
+}
+.pillar-desc {
+  font-size: 14px; color: var(--ink-75); line-height: 1.65;
+}
+
+/* ══════════ EXPERTISE ══════════ */
+.expertise-section { background: var(--ivory); }
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.exp-card {
+  background: var(--ivory);
+  padding: 40px 36px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.exp-card::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 0;
+  background: var(--copper); transition: height 0.3s;
+}
+.exp-card:hover { background: var(--white); transform: translateY(-3px); box-shadow: 0 16px 48px rgba(22,22,22,0.08); z-index: 2; }
+.exp-card:hover::after { height: 3px; }
+.exp-icon { font-size: 22px; margin-bottom: 18px; display: block; opacity: 0.65; }
+.exp-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600;
+  color: var(--ink); margin-bottom: 12px; line-height: 1.2;
+}
+.exp-desc { font-size: 14px; color: var(--ink-75); line-height: 1.72; }
+.exp-tags { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 6px; }
+.exp-tag {
+  font-size: 10px; font-weight: 500; letter-spacing: 1.5px;
+  text-transform: uppercase; padding: 4px 10px;
+  background: var(--copper-bg); color: var(--copper); border-radius: 1px;
+}
+
+/* ══════════ PROJECTS ══════════ */
+.projects-section {
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+}
+.projects-intro {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  margin-bottom: 52px;
+}
+.projects-note {
+  font-size: 12.5px; color: var(--ink-50); font-style: italic; text-align: right; padding-bottom: 4px;
+}
+.projects-list {
+  display: flex; flex-direction: column;
+  gap: 2px; background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.project-row {
+  background: var(--white);
+  display: grid;
+  grid-template-columns: 72px 1fr 40px;
+  align-items: stretch;
+  transition: background 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.project-row:hover { background: var(--ivory); }
+.project-row:hover .project-arrow { opacity: 1; transform: translateX(0); }
+.project-index {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; color: var(--copper);
+  padding: 32px 0 32px 28px;
+  display: flex; align-items: flex-start;
+  border-right: 1px solid var(--rule);
+}
+.project-body { padding: 32px 40px; }
+.project-category {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--copper); margin-bottom: 8px;
+}
+.project-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 600;
+  color: var(--ink); margin-bottom: 10px; line-height: 1.2;
+}
+.project-desc {
+  font-family: 'Source Serif 4', serif;
+  font-size: 15px; color: var(--ink-75); line-height: 1.72; max-width: 580px;
+}
+.project-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.project-chip {
+  font-size: 11px; letter-spacing: 0.8px;
+  padding: 4px 12px; border: 1px solid var(--rule);
+  border-radius: 20px; color: var(--ink-75);
+}
+.project-arrow {
+  display: flex; align-items: center; padding-right: 24px;
+  font-size: 18px; color: var(--copper);
+  opacity: 0; transform: translateX(-8px);
+  transition: all 0.25s;
+}
+.add-note {
+  margin-top: 20px;
+  padding: 18px 24px;
+  background: var(--copper-bg);
+  border: 1px dashed var(--copper-bdr);
+  border-radius: 2px;
+  font-size: 13.5px; color: var(--copper);
+  display: flex; align-items: center; gap: 10px;
+}
+
+/* ══════════ BLOG ══════════ */
+.blog-section { background: var(--ivory); }
+.blog-intro {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  margin-bottom: 52px;
+}
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 2px; background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.blog-card {
+  background: var(--ivory);
+  overflow: hidden;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+  display: flex; flex-direction: column;
+}
+.blog-card:hover { background: var(--white); box-shadow: 0 16px 48px rgba(22,22,22,0.08); z-index: 2; transform: translateY(-3px); }
+.blog-card-img { height: 180px; position: relative; overflow: hidden; flex-shrink: 0; }
+.blog-card:first-child .blog-card-img { height: 220px; }
+.blog-card-img svg { width: 100%; height: 100%; }
+.blog-card-body {
+  padding: 28px 28px 32px;
+  flex: 1; display: flex; flex-direction: column;
+}
+.blog-cat {
+  font-size: 9.5px; font-weight: 500; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--copper);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+}
+.blog-cat::before { content: ''; width: 14px; height: 1px; background: var(--copper); }
+.blog-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px; font-weight: 600;
+  color: var(--ink); line-height: 1.25; margin-bottom: 12px;
+}
+.blog-card:first-child .blog-title { font-size: 25px; }
+.blog-excerpt {
+  font-family: 'Source Serif 4', serif;
+  font-size: 14px; color: var(--ink-75);
+  line-height: 1.70; flex: 1;
+}
+.blog-meta {
+  margin-top: 20px; padding-top: 16px;
+  border-top: 1px solid var(--rule);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; color: var(--ink-50);
+}
+
+/* ══════════ EXPERIENCE ══════════ */
+.experience-section {
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+}
+.exp-timeline { position: relative; }
+.exp-timeline::before {
+  content: ''; position: absolute;
+  left: 152px; top: 0; bottom: 0;
+  width: 1px; background: var(--rule);
+}
+.exp-item {
+  display: grid;
+  grid-template-columns: 152px 1fr;
+  border-bottom: 1px solid var(--rule);
+}
+.exp-item:last-child { border-bottom: none; }
+.exp-year {
+  padding: 40px 32px 40px 0;
+  text-align: right;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; color: var(--ink-50);
+  position: relative;
+}
+.exp-year::after {
+  content: ''; position: absolute;
+  right: -5px; top: 48px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--white); border: 1.5px solid var(--copper);
+}
+.exp-content { padding: 40px 0 40px 44px; }
+.exp-company-row {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 6px;
+}
+.exp-company {
+  font-size: 10.5px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--copper);
+}
+.exp-location {
+  font-size: 11.5px; color: var(--ink-50);
+}
+.exp-role {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 600;
+  color: var(--ink); margin-bottom: 20px; line-height: 1.2;
+}
+.exp-points { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.exp-points li {
+  font-family: 'Source Serif 4', serif;
+  font-size: 15px; color: var(--ink-75);
+  line-height: 1.72; padding-left: 20px; position: relative;
+}
+.exp-points li::before {
+  content: ''; position: absolute;
+  left: 0; top: 11px;
+  width: 7px; height: 1px; background: var(--copper);
+}
+
+/* ══════════ TECH ══════════ */
+.tech-section { background: var(--ivory); }
+.tech-table { width: 100%; border: 1px solid var(--rule); border-collapse: collapse; }
+.tech-table tr { border-bottom: 1px solid var(--rule); transition: background 0.2s; }
+.tech-table tr:last-child { border-bottom: none; }
+.tech-table tr:hover { background: var(--white); }
+.tech-table td { padding: 22px 28px; vertical-align: middle; }
+.tech-table td:first-child {
+  width: 200px; border-right: 1px solid var(--rule);
+  font-size: 10.5px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--copper); white-space: nowrap;
+}
+.tech-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.tech-pill {
+  font-size: 13px; padding: 6px 15px;
+  border: 1px solid var(--rule); border-radius: 20px;
+  color: var(--ink-75); background: var(--white);
+  transition: all 0.2s; font-weight: 400;
+}
+.tech-pill:hover { border-color: var(--copper); color: var(--copper); background: var(--copper-bg); }
+
+/* ══════════ CERTS ══════════ */
+.certs-section {
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+}
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px; background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.cert-card {
+  background: var(--white);
+  padding: 32px 28px;
+  transition: all 0.25s;
+}
+.cert-card:hover { background: var(--ivory); transform: translateY(-2px); }
+.cert-mark { font-size: 26px; margin-bottom: 14px; display: block; }
+.cert-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-weight: 600;
+  color: var(--ink); line-height: 1.35; margin-bottom: 8px;
+}
+.cert-body { font-size: 12.5px; color: var(--copper); font-weight: 500; letter-spacing: 0.3px; }
+
+/* ══════════ CONTACT ══════════ */
+.contact-section {
+  background: var(--ink);
+  padding: 120px 80px;
+  position: relative; overflow: hidden;
+}
+.contact-section::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    linear-gradient(135deg, transparent 49%, rgba(168,92,36,0.05) 49%, rgba(168,92,36,0.05) 51%, transparent 51%),
+    linear-gradient(45deg,  transparent 49%, rgba(168,92,36,0.03) 49%, rgba(168,92,36,0.03) 51%, transparent 51%);
+  background-size: 80px 80px;
+}
+.contact-inner { position: relative; max-width: 720px; }
+.contact-tag {
+  font-size: 10.5px; font-weight: 500; letter-spacing: 3.5px;
+  text-transform: uppercase; color: var(--copper-l);
+  margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+}
+.contact-tag::before { content: ''; width: 28px; height: 1px; background: var(--copper-l); }
+.contact-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(46px, 5.5vw, 70px);
+  font-weight: 300; line-height: 1.08;
+  color: var(--ivory); margin-bottom: 28px;
+}
+.contact-heading em { font-style: italic; color: var(--copper-l); }
+.contact-body {
+  font-family: 'Source Serif 4', serif;
+  font-size: 17px; color: rgba(248,246,241,0.62);
+  line-height: 1.78; margin-bottom: 52px; max-width: 520px;
+}
+.contact-methods {
+  display: flex; flex-direction: column;
+  border: 1px solid rgba(255,255,255,0.09);
+  margin-bottom: 40px;
+}
+.contact-method {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  text-decoration: none; color: inherit; transition: background 0.2s;
+}
+.contact-method:last-child { border-bottom: none; }
+.contact-method:hover { background: rgba(168,92,36,0.12); }
+.contact-method-label {
+  font-size: 10px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: rgba(248,246,241,0.38); margin-bottom: 5px;
+}
+.contact-method-value {
+  font-family: 'Source Serif 4', serif;
+  font-size: 17px; color: var(--ivory);
+}
+.contact-arrow { font-size: 18px; color: var(--copper-l); opacity: 0; transition: opacity 0.2s; }
+.contact-method:hover .contact-arrow { opacity: 1; }
+
+/* ══════════ FOOTER ══════════ */
+footer {
+  background: #0f0f0f;
+  padding: 28px 80px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: rgba(248,246,241,0.35); }
+.footer-logo span { color: var(--copper-l); }
+.footer-right { font-size: 12px; color: rgba(248,246,241,0.25); letter-spacing: 0.5px; }
+
+/* ══════════ ANIMATIONS ══════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════ RESPONSIVE ══════════ */
+@media (max-width: 1080px) {
+  nav { padding: 0 36px; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { border-left: none; border-top: 1px solid var(--rule); padding: 48px 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .hero-right-label { grid-column: 1/-1; }
+  .location-tag { grid-column: 1/-1; margin-top: 24px; }
+  section { padding: 80px 40px; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .expertise-grid { grid-template-columns: repeat(2, 1fr); }
+  .blog-grid { grid-template-columns: 1fr 1fr; }
+  .blog-card:first-child { grid-column: 1/-1; }
+  .certs-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-section { padding: 80px 40px; }
+  footer { padding: 24px 40px; }
+}
+@media (max-width: 700px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hero-left { padding: 60px 24px 48px; }
+  .hero::before { display: none; }
+  section { padding: 64px 24px; }
+  .expertise-grid, .blog-grid, .certs-grid { grid-template-columns: 1fr; }
+  .blog-card:first-child { grid-column: auto; }
+  .projects-intro, .blog-intro { grid-template-columns: 1fr; gap: 8px; }
+  .projects-note { text-align: left; }
+  .project-row { grid-template-columns: 56px 1fr; }
+  .project-arrow { display: none; }
+  .exp-timeline::before { display: none; }
+  .exp-item { grid-template-columns: 1fr; }
+  .exp-year { text-align: left; padding: 32px 0 0; }
+  .exp-year::after { display: none; }
+  .exp-content { padding: 12px 0 32px; }
+  .tech-table td:first-child { display: none; }
+  .contact-section { padding: 64px 24px; }
+  footer { padding: 20px 24px; flex-direction: column; gap: 8px; }
+}
+</style>
 </head>
 <body>
 
-<!-- Header / Hero Section -->
-<header>
-  <h1>Naimish Kakkad</h1>
-  <p>Principal Architect | AI & Payments Platforms | API-First Design Expert</p>
-  <button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View My Work</button>
-</header>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Naimish <span>Kakkad</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#blog">Insights</a></li>
+    <li><a href="#experience">Journey</a></li>
+    <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+  </ul>
+</nav>
 
-<!-- About Section -->
-<section id="about">
-  <h2>About Me</h2>
-  <p>I have 13+ years designing large-scale banking and fintech platforms. I specialize in API-first platforms, payment infrastructure, AI-enabled risk analytics, and cloud-native integrations. I’ve led architecture strategy and engineering teams to deliver secure, scalable, and innovative financial systems.</p>
-</section>
-
-<!-- Skills Section -->
-<section class="skills" id="skills">
-  <h2>Skills & Tech Stack</h2>
-  <div class="skill-list">
-    <div class="skill-item"><strong>APIs & Platforms:</strong> REST, GraphQL, FastAPI, gRPC, Microservices</div>
-    <div class="skill-item"><strong>AI & ML:</strong> Python, scikit-learn, PyTorch, Transformers</div>
-    <div class="skill-item"><strong>Payments & FinTech:</strong> Real-time payments, ISO20022, ACH, Fraud Detection</div>
-    <div class="skill-item"><strong>Cloud & DevOps:</strong> AWS, Azure, Kubernetes, Docker, CI/CD</div>
-    <div class="skill-item"><strong>Security & Compliance:</strong> PCI-DSS, Encryption, Access Control</div>
+<!-- HERO -->
+<section class="hero" style="padding-top: var(--nav-h); padding-left:0; padding-right:0; padding-bottom:0;">
+  <div class="hero-left">
+    <p class="hero-tag">Payment Architecture · API Platforms · Engineering Leadership</p>
+    <h1 class="hero-name">Naimish<br/><em>Kakkad</em></h1>
+    <p class="hero-role">Principal Architect — Fintech &amp; Digital Banking</p>
+    <p class="hero-statement">
+      I design the infrastructure that moves money at scale — from ISO 20022 payment rails and real-time settlement networks to enterprise API platforms powering the next generation of financial institutions.
+    </p>
+    <div class="hero-actions">
+      <a href="#work" class="btn btn-dark">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Start a Conversation</a>
+    </div>
   </div>
-</section>
 
-<!-- Projects Section -->
-<section class="projects" id="projects">
-  <h2>Projects</h2>
-  <div class="project-list">
-    <div class="project-item">
-      <img src="images/fraud_detection.png" alt="Fraud Detection Demo">
-      <h3>AI-Powered Fraud Detection</h3>
-      <p>Real-time transaction monitoring with anomaly detection and API exposure for alerting.</p>
-      <p><strong>Tech:</strong> Python, FastAPI, Kafka, Streamlit, Docker</p>
-      <p><a href="https://github.com/yourusername/ai-payment-fraud-detection" target="_blank">GitHub Repo</a> | <a href="#" target="_blank">Live Demo</a></p>
+  <div class="hero-right">
+    <div class="hero-right-label">At a Glance</div>
+    <div class="stat-row">
+      <div class="stat-number">13<sup>+</sup></div>
+      <div class="stat-label">Years architecting enterprise-grade fintech &amp; payment systems</div>
     </div>
-    <div class="project-item">
-      <img src="images/payment_routing.png" alt="Payment Routing Demo">
-      <h3>Dynamic Payment Routing</h3>
-      <p>AI selects the optimal route for transactions based on speed and cost, simulating multi-processor payment flows.</p>
-      <p><strong>Tech:</strong> Python, scikit-learn, FastAPI, Docker</p>
-      <p><a href="https://github.com/yourusername/payment-routing-optimizer" target="_blank">GitHub Repo</a> | <a href="#" target="_blank">Live Demo</a></p>
+    <div class="stat-row">
+      <div class="stat-number">4<span class="unit"> Regions</span></div>
+      <div class="stat-label">Projects delivered across India, USA, and Canada</div>
     </div>
-    <div class="project-item">
-      <img src="images/nlp_reconciliation.png" alt="Payment Reconciliation Demo">
-      <h3>AI Payment Reconciliation</h3>
-      <p>NLP-based matching of incoming/outgoing transactions and anomaly detection for reconciliation.</p>
-      <p><strong>Tech:</strong> Python, Transformers, Streamlit, Docker</p>
-      <p><a href="https://github.com/yourusername/payment-nlp-reconciliation" target="_blank">GitHub Repo</a> | <a href="#" target="_blank">Live Demo</a></p>
+    <div class="stat-row">
+      <div class="stat-number">8<sup>+</sup></div>
+      <div class="stat-label">Industry certifications across cloud, integration &amp; banking</div>
+    </div>
+    <div class="location-tag">
+      <div class="location-dot"></div>
+      Ottawa, ON, Canada
     </div>
   </div>
 </section>
 
-<!-- Experience Section -->
-<section class="experience" id="experience">
-  <h2>Career Highlights</h2>
-  <div class="exp-list">
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-header" style="margin-bottom:36px;">
+        <p class="section-kicker">Philosophy &amp; Approach</p>
+        <h2 class="section-title">Bridging <em>Strategy</em><br/>and Execution</h2>
+      </div>
+      <div class="about-body">
+        <p>Payment architecture is not a technology problem — it is a <strong>business design problem</strong>. I work at that intersection, translating complex regulatory, operational, and financial requirements into systems that are resilient, auditable, and built to evolve.</p>
+        <p>Over 13 years I have worked across the full stack of financial infrastructure: from ISO 8583 message parsing at the network edge to orchestrating cloud-native core banking migrations on Mambu and FLEXCUBE. I partner with CXOs to align architecture decisions with business outcomes, and with engineering leaders to raise the technical bar.</p>
+        <p>My approach is practitioner-first — every architectural recommendation is grounded in <strong>operational reality, regulatory risk, and total cost of ownership</strong>. I do not design for whiteboards; I design for production.</p>
+      </div>
+    </div>
+    <div class="about-pillars">
+      <div class="pillar">
+        <div class="pillar-num">01 —</div>
+        <div class="pillar-name">API-First Architecture</div>
+        <div class="pillar-desc">Every integration is a product. I design API ecosystems that are governed, versioned, and built for longevity — not one-time point solutions.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02 —</div>
+        <div class="pillar-name">Payment Rails Mastery</div>
+        <div class="pillar-desc">Deep expertise across ISO 8583, ISO 20022, real-time payment networks, ATM/POS, and Interac — from protocol design to platform architecture.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03 —</div>
+        <div class="pillar-name">Regulatory by Design</div>
+        <div class="pillar-desc">PCI DSS, data sovereignty, and compliance controls embedded at architecture level — never retrofitted as an afterthought.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04 —</div>
+        <div class="pillar-name">Engineering Leadership</div>
+        <div class="pillar-desc">Building and mentoring architecture practices that outlast any single project — through standards, documentation, and technical culture.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="expertise-section" id="expertise">
+  <div class="section-header">
+    <p class="section-kicker">Core Competencies</p>
+    <h2 class="section-title">Where I Create<br/>the Most <em>Value</em></h2>
+  </div>
+  <div class="expertise-grid">
+    <div class="exp-card">
+      <span class="exp-icon">⟳</span>
+      <h3 class="exp-name">Payment Architecture</h3>
+      <p class="exp-desc">End-to-end design of payment processing platforms — from card scheme integration and ISO messaging to real-time settlement, Interac e-Transfer, and reconciliation engines.</p>
+      <div class="exp-tags"><span class="exp-tag">ISO 20022</span><span class="exp-tag">ISO 8583</span><span class="exp-tag">Real-Time Payments</span></div>
+    </div>
+    <div class="exp-card">
+      <span class="exp-icon">⬡</span>
+      <h3 class="exp-name">Enterprise API Platforms</h3>
+      <p class="exp-desc">Designing MuleSoft-based integration platforms that serve as the connective tissue across core banking, digital channels, and fintech partners — at enterprise scale.</p>
+      <div class="exp-tags"><span class="exp-tag">MuleSoft</span><span class="exp-tag">API Governance</span><span class="exp-tag">ESB/SOA</span></div>
+    </div>
+    <div class="exp-card">
+      <span class="exp-icon">⬕</span>
+      <h3 class="exp-name">Core Banking Modernization</h3>
+      <p class="exp-desc">Migration and modernization strategy for legacy core banking systems — hands-on with Mambu, FLEXCUBE, and Temenos Horizon in regulated financial environments.</p>
+      <div class="exp-tags"><span class="exp-tag">Mambu</span><span class="exp-tag">FLEXCUBE</span><span class="exp-tag">Cloud Migration</span></div>
+    </div>
+    <div class="exp-card">
+      <span class="exp-icon">☁</span>
+      <h3 class="exp-name">Cloud-Native Infrastructure</h3>
+      <p class="exp-desc">AWS and Azure platform architecture for financial services — AKS-hosted runtime environments, containerised microservices, and production-grade observability stacks.</p>
+      <div class="exp-tags"><span class="exp-tag">AWS</span><span class="exp-tag">Azure</span><span class="exp-tag">Kubernetes</span></div>
+    </div>
+    <div class="exp-card">
+      <span class="exp-icon">⊛</span>
+      <h3 class="exp-name">Security &amp; Compliance</h3>
+      <p class="exp-desc">PCI DSS architecture, HSM-based key management for card authorization, OAuth 2.0 identity federation, and API security policy enforcement in regulated environments.</p>
+      <div class="exp-tags"><span class="exp-tag">PCI DSS</span><span class="exp-tag">HSM</span><span class="exp-tag">OAuth 2.0</span></div>
+    </div>
+    <div class="exp-card">
+      <span class="exp-icon">◈</span>
+      <h3 class="exp-name">ATM &amp; Digital Channels</h3>
+      <p class="exp-desc">Architecture of ATM transaction orchestration, cardless cash withdrawal platforms, and digital banking channel integrations — including the Diebold Nixdorf enterprise platform initiative.</p>
+      <div class="exp-tags"><span class="exp-tag">ATM/POS</span><span class="exp-tag">Cardless</span><span class="exp-tag">Digital Banking</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="work">
+  <div class="projects-intro">
+    <div class="section-header" style="margin-bottom:0;">
+      <p class="section-kicker">Selected Work</p>
+      <h2 class="section-title">Projects &amp;<br/><em>Initiatives</em></h2>
+    </div>
+    <p class="projects-note">Sample entries — add your own as you go</p>
+  </div>
+
+  <div class="projects-list">
+
+    <a href="#" class="project-row">
+      <div class="project-index">01</div>
+      <div class="project-body">
+        <div class="project-category">Digital Banking · Enterprise Platform</div>
+        <div class="project-title">League Data — Next-Generation Banking Ecosystem</div>
+        <div class="project-desc">Led architecture strategy for League Data, the primary technology provider to 30+ Canadian credit unions. Designed the next-generation banking platform on Mambu and AWS — establishing enterprise integration patterns, API governance, and a reusable fintech partner onboarding framework that significantly reduced time-to-market for new banking products.</div>
+        <div class="project-chips">
+          <span class="project-chip">Mambu</span>
+          <span class="project-chip">AWS</span>
+          <span class="project-chip">MuleSoft</span>
+          <span class="project-chip">API Governance</span>
+          <span class="project-chip">Multi-Tenant Architecture</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+
+    <a href="#" class="project-row">
+      <div class="project-index">02</div>
+      <div class="project-body">
+        <div class="project-category">Payment Platform · Global Enterprise</div>
+        <div class="project-title">Diebold Nixdorf — MuleSoft Anypoint Enterprise Platform</div>
+        <div class="project-desc">Senior Architect on a strategic initiative with Diebold Nixdorf to build an enterprise MuleSoft Anypoint Platform for their global Retail and Banking business units. Designed Azure-hosted Runtime Fabric on AKS, unified ATM transaction engines, and established the API onboarding strategy for digital banking channel integrations including cardless cash withdrawal.</div>
+        <div class="project-chips">
+          <span class="project-chip">MuleSoft Runtime Fabric</span>
+          <span class="project-chip">Azure AKS</span>
+          <span class="project-chip">ATM Integration</span>
+          <span class="project-chip">API Governance</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+
+    <a href="#" class="project-row">
+      <div class="project-index">03</div>
+      <div class="project-body">
+        <div class="project-category">Payments · Real-Time Infrastructure</div>
+        <div class="project-title">ISO 20022 Payment Messaging Architecture</div>
+        <div class="project-desc">Designed and implemented ISO 8583 and ISO 20022 payment messaging infrastructure supporting Interac e-Transfer, AFT, bill payments, and ATM/POS card processing. Included HSM-based security architecture for card authorization and transaction protection — built to financial-grade reliability and PCI DSS standards.</div>
+        <div class="project-chips">
+          <span class="project-chip">ISO 20022</span>
+          <span class="project-chip">ISO 8583</span>
+          <span class="project-chip">Interac e-Transfer</span>
+          <span class="project-chip">HSM Security</span>
+          <span class="project-chip">PCI DSS</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+
+    <a href="#" class="project-row">
+      <div class="project-index">04</div>
+      <div class="project-body">
+        <div class="project-category">Financial Advisory · API Platform</div>
+        <div class="project-title">TIAA — Enterprise Financial Advisory API Platform</div>
+        <div class="project-desc">Led architecture and delivery of enterprise APIs powering financial advisory workflows at TIAA — one of the largest financial services institutions in the United States. Delivered MuleSoft-based APIs, CI/CD pipeline architecture, and identity platform integrations with regulatory compliance controls, measurably improving release velocity and platform reliability.</div>
+        <div class="project-chips">
+          <span class="project-chip">MuleSoft</span>
+          <span class="project-chip">CI/CD</span>
+          <span class="project-chip">Identity Federation</span>
+          <span class="project-chip">Regulatory Compliance</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+
+  </div>
+
+  <div class="add-note">
+    <span>✦</span>
+    <span>More projects coming soon — this section is built for you to add new work as it is completed.</span>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog-section" id="blog">
+  <div class="blog-intro">
+    <div class="section-header" style="margin-bottom:0;">
+      <p class="section-kicker">Thinking &amp; Insights</p>
+      <h2 class="section-title">Published<br/><em>Writing</em></h2>
+    </div>
+    <p class="projects-note">Add new posts as you publish</p>
+  </div>
+
+  <div class="blog-grid">
+
+    <a href="https://dzone.com" target="_blank" class="blog-card">
+      <div class="blog-card-img">
+        <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+          <rect width="600" height="220" fill="#f0ede6"/>
+          <circle cx="500" cy="110" r="130" fill="none" stroke="#a85c24" stroke-width="0.6" opacity="0.35"/>
+          <circle cx="500" cy="110" r="85"  fill="none" stroke="#a85c24" stroke-width="0.6" opacity="0.35"/>
+          <circle cx="500" cy="110" r="42"  fill="none" stroke="#a85c24" stroke-width="0.6" opacity="0.35"/>
+          <line x1="0" y1="44" x2="600" y2="44" stroke="#161616" stroke-width="0.3" opacity="0.12"/>
+          <line x1="0" y1="88" x2="600" y2="88" stroke="#161616" stroke-width="0.3" opacity="0.12"/>
+          <line x1="0" y1="132" x2="600" y2="132" stroke="#161616" stroke-width="0.3" opacity="0.12"/>
+          <line x1="0" y1="176" x2="600" y2="176" stroke="#161616" stroke-width="0.3" opacity="0.12"/>
+          <text x="40" y="148" font-family="Georgia,serif" font-size="72" fill="#a85c24" opacity="0.10" font-weight="700">CI/CD</text>
+          <rect x="40" y="54" width="3" height="112" fill="#a85c24" opacity="0.55"/>
+        </svg>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-cat">Technical Deep-Dive · DZone</div>
+        <div class="blog-title">CI/CD for MuleSoft: A Production-Grade Pipeline Architecture</div>
+        <div class="blog-excerpt">A comprehensive guide to building robust CI/CD pipelines for MuleSoft Anypoint Platform — covering branching strategy, automated testing gates, and zero-downtime deployment patterns for financial services engineering teams.</div>
+        <div class="blog-meta">
+          <span>Published · DZone</span>
+          <span>⏱ 12 min read</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="blog-card">
+      <div class="blog-card-img">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#fff"/>
+          <path d="M0,180 Q120,70 220,120 T400,50 L400,180 Z" fill="#a85c24" opacity="0.06"/>
+          <circle cx="330" cy="55" r="65" fill="none" stroke="#2c3e50" stroke-width="0.5" opacity="0.18"/>
+          <circle cx="330" cy="55" r="38" fill="none" stroke="#2c3e50" stroke-width="0.5" opacity="0.18"/>
+          <text x="28" y="108" font-family="Georgia,serif" font-size="46" fill="#2c3e50" opacity="0.09" font-weight="700">IDP</text>
+        </svg>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-cat">Identity &amp; Security</div>
+        <div class="blog-title">External Identity with Anypoint &amp; IDP</div>
+        <div class="blog-excerpt">Integrating external identity providers with MuleSoft Anypoint Platform — OAuth 2.0 flows, token introspection, and policy enforcement patterns for banking-grade API security.</div>
+        <div class="blog-meta">
+          <span>Published · MuleSoft Community</span>
+          <span>⏱ 8 min read</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="blog-card">
+      <div class="blog-card-img">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="#f8f6f1"/>
+          <rect x="24" y="24" width="352" height="1" fill="#a85c24" opacity="0.18"/>
+          <rect x="24" y="64" width="272" height="1" fill="#a85c24" opacity="0.18"/>
+          <rect x="24" y="104" width="312" height="1" fill="#a85c24" opacity="0.18"/>
+          <rect x="24" y="144" width="230" height="1" fill="#a85c24" opacity="0.18"/>
+          <circle cx="326" cy="128" r="44" fill="#a85c24" opacity="0.05"/>
+          <text x="28" y="92" font-family="Georgia,serif" font-size="34" fill="#a85c24" opacity="0.16" font-weight="600">ISO</text>
+          <text x="28" y="128" font-family="Georgia,serif" font-size="34" fill="#a85c24" opacity="0.16" font-weight="600">20022</text>
+        </svg>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-cat">Payments · Coming Soon</div>
+        <div class="blog-title">Migrating to ISO 20022 — What Architects Need to Know</div>
+        <div class="blog-excerpt">The business and technical implications of the global ISO 20022 migration — schema design, data enrichment strategy, and coexistence planning for financial institutions.</div>
+        <div class="blog-meta">
+          <span>Draft · Publishing Soon</span>
+          <span>⏱ 10 min read</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="add-note" style="margin-top:20px;">
+    <span>✦</span>
+    <span>Ready for your upcoming posts — add new blog cards as you publish to LinkedIn, DZone, or your own site.</span>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience-section" id="experience">
+  <div class="section-header">
+    <p class="section-kicker">Career Journey</p>
+    <h2 class="section-title">13 Years of<br/><em>Building</em></h2>
+  </div>
+  <div class="exp-timeline">
+
     <div class="exp-item">
-      <h3>Principal Architect | Fintech & BFSI Platforms</h3>
-      <ul>
-        <li>Led API-first platform design for multi-bank digital payments.</li>
-        <li>Architected AI-driven anomaly detection for real-time transactions.</li>
-        <li>Managed distributed engineering teams across cloud-native projects.</li>
-      </ul>
+      <div class="exp-year">2020 – Present</div>
+      <div class="exp-content">
+        <div class="exp-company-row">
+          <span class="exp-company">Persistent Systems</span>
+          <span class="exp-location">Ottawa, Canada</span>
+        </div>
+        <div class="exp-role">Principal Architect / Senior Architect</div>
+        <ul class="exp-points">
+          <li>Architecture and engineering lead for League Data — the primary technology provider to 30+ Canadian credit unions — delivering digital banking, payments, and enterprise integration platforms.</li>
+          <li>Senior Architect on the Diebold Nixdorf strategic initiative: designed enterprise MuleSoft Anypoint Platform on Azure AKS for Retail and Banking business units across global markets.</li>
+          <li>Architected next-generation core banking platform on Mambu and AWS; established reusable integration patterns accelerating fintech partner onboarding and product time-to-market.</li>
+          <li>Designed ISO 8583 and ISO 20022 payment messaging infrastructure, including HSM-based card authorization security and Interac e-Transfer integration.</li>
+          <li>Mentors architects and tech leads; defines CI/CD, API lifecycle governance, observability, and platform reliability standards across distributed engineering teams.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-year">2016 – 2020</div>
+      <div class="exp-content">
+        <div class="exp-company-row">
+          <span class="exp-company">TIAA</span>
+          <span class="exp-location">India &amp; United States</span>
+        </div>
+        <div class="exp-role">Senior Associate / Technical Lead</div>
+        <ul class="exp-points">
+          <li>Led architecture and delivery of enterprise APIs powering financial advisory platforms for one of the largest financial services institutions in the United States.</li>
+          <li>Built secure integrations with identity platforms and regulatory compliance controls; implemented CI/CD pipelines that improved developer productivity and release reliability.</li>
+          <li>Worked across India and US delivery teams, bridging onshore strategy with offshore engineering execution.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-year">2014 – 2016</div>
+      <div class="exp-content">
+        <div class="exp-company-row">
+          <span class="exp-company">Oracle Financial Services</span>
+          <span class="exp-location">India</span>
+        </div>
+        <div class="exp-role">Senior Developer</div>
+        <ul class="exp-points">
+          <li>Implemented enterprise core banking integrations on Oracle FLEXCUBE for major Indian institutions including HDFC Bank and YES Bank.</li>
+          <li>Contributed to Exadata performance optimization initiatives and private banking API delivery.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-year">2012 – 2014</div>
+      <div class="exp-content">
+        <div class="exp-company-row">
+          <span class="exp-company">Tata Consultancy Services</span>
+          <span class="exp-location">India</span>
+        </div>
+        <div class="exp-role">Assistant System Engineer</div>
+        <ul class="exp-points">
+          <li>Developed enterprise Java APIs for JPMorgan Chase's Global Trade platform.</li>
+          <li>Delivered SOAP-to-REST modernization initiatives for global banking clients.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech-section" id="tech">
+  <div class="section-header">
+    <p class="section-kicker">Technical Arsenal</p>
+    <h2 class="section-title">The Stack I<br/><em>Work With</em></h2>
+  </div>
+  <table class="tech-table">
+    <tr>
+      <td>Integration &amp; API</td>
+      <td><div class="tech-pills"><span class="tech-pill">MuleSoft Anypoint</span><span class="tech-pill">ESB / SOA</span><span class="tech-pill">Event-Driven Architecture</span><span class="tech-pill">REST / GraphQL</span><span class="tech-pill">gRPC</span><span class="tech-pill">API Gateway</span><span class="tech-pill">DataWeave</span></div></td>
+    </tr>
+    <tr>
+      <td>Payments &amp; FinTech</td>
+      <td><div class="tech-pills"><span class="tech-pill">ISO 20022</span><span class="tech-pill">ISO 8583</span><span class="tech-pill">Interac e-Transfer</span><span class="tech-pill">ATM / POS</span><span class="tech-pill">AFT / Bill Pay</span><span class="tech-pill">HSM</span><span class="tech-pill">Card Authorization</span></div></td>
+    </tr>
+    <tr>
+      <td>Core Banking</td>
+      <td><div class="tech-pills"><span class="tech-pill">Mambu</span><span class="tech-pill">Oracle FLEXCUBE</span><span class="tech-pill">Temenos Horizon</span></div></td>
+    </tr>
+    <tr>
+      <td>Cloud &amp; Infra</td>
+      <td><div class="tech-pills"><span class="tech-pill">AWS</span><span class="tech-pill">Azure</span><span class="tech-pill">AKS</span><span class="tech-pill">Runtime Fabric</span><span class="tech-pill">Docker</span><span class="tech-pill">Kubernetes</span><span class="tech-pill">OpenShift</span></div></td>
+    </tr>
+    <tr>
+      <td>Security</td>
+      <td><div class="tech-pills"><span class="tech-pill">OAuth 2.0</span><span class="tech-pill">Azure AD</span><span class="tech-pill">Okta</span><span class="tech-pill">PCI DSS</span><span class="tech-pill">Identity Federation</span></div></td>
+    </tr>
+    <tr>
+      <td>Languages &amp; Dev</td>
+      <td><div class="tech-pills"><span class="tech-pill">Java / J2EE</span><span class="tech-pill">DataWeave</span><span class="tech-pill">Python</span><span class="tech-pill">CI/CD Pipelines</span><span class="tech-pill">Observability</span></div></td>
+    </tr>
+  </table>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs-section" id="certs">
+  <div class="section-header">
+    <p class="section-kicker">Credentials</p>
+    <h2 class="section-title">Certifications &amp;<br/><em>Recognition</em></h2>
+  </div>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <span class="cert-mark">☁️</span>
+      <div class="cert-name">AWS Solutions Architect — Associate</div>
+      <div class="cert-body">Amazon Web Services</div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-mark">⚙️</span>
+      <div class="cert-name">Platform Architect L1 &amp; Integration Architect L1</div>
+      <div class="cert-body">MuleSoft / Salesforce</div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-mark">🏆</span>
+      <div class="cert-name">MuleSoft Delivery Champion &amp; Industry Playbook Champion</div>
+      <div class="cert-body">MuleSoft / Salesforce</div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-mark">🏦</span>
+      <div class="cert-name">Solution, Application &amp; Integration Consultant</div>
+      <div class="cert-body">Mambu</div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-mark">🎓</span>
+      <div class="cert-name">B.Sc. Information Technology — University Rank Holder</div>
+      <div class="cert-body">Saurashtra University · First in University</div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-mark">📡</span>
+      <div class="cert-name">Associate Member — IETE</div>
+      <div class="cert-body">Institution of Electronics &amp; Telecom Engineers</div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-mark">✍️</span>
+      <div class="cert-name">Published Author</div>
+      <div class="cert-body">DZone · CI/CD &amp; API Identity Architecture</div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-mark">🎤</span>
+      <div class="cert-name">Community Speaker &amp; Moderator</div>
+      <div class="cert-body">MuleSoft NYC &amp; Nagpur Communities</div>
     </div>
   </div>
 </section>
 
-<!-- Contact Section -->
-<section class="contact" id="contact">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:naimish@example.com">naimish@example.com</a></p>
-  <p>LinkedIn: <a href="https://www.linkedin.com/in/naimishkakkad" target="_blank">linkedin.com/in/naimishkakkad</a></p>
-  <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
-  <p><button onclick="window.location.href='resume.pdf'">Download Resume</button></p>
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <p class="contact-tag">Let's Connect</p>
+    <h2 class="contact-heading">Ready to Architect<br/>Something <em>Remarkable?</em></h2>
+    <p class="contact-body">Whether you're a CXO evaluating a payments modernisation programme, an engineering leader building your architecture practice, or a fintech looking for strategic advisory — I'd welcome the conversation.</p>
+    <div class="contact-methods">
+      <a href="mailto:naimish.h.kakkad@gmail.com" class="contact-method">
+        <div>
+          <div class="contact-method-label">Email</div>
+          <div class="contact-method-value">naimish.h.kakkad@gmail.com</div>
+        </div>
+        <div class="contact-arrow">→</div>
+      </a>
+      <a href="https://www.linkedin.com/in/naimish-kakkad/" target="_blank" class="contact-method">
+        <div>
+          <div class="contact-method-label">LinkedIn</div>
+          <div class="contact-method-value">linkedin.com/in/naimish-kakkad</div>
+        </div>
+        <div class="contact-arrow">→</div>
+      </a>
+      <a href="https://naimish-kakkad.github.io/portfolio/" target="_blank" class="contact-method">
+        <div>
+          <div class="contact-method-label">Portfolio</div>
+          <div class="contact-method-value">naimish-kakkad.github.io/portfolio</div>
+        </div>
+        <div class="contact-arrow">→</div>
+      </a>
+    </div>
+    <a href="mailto:naimish.h.kakkad@gmail.com" class="btn" style="background:var(--copper-l);color:var(--white);padding:16px 38px;">Start the Conversation</a>
+  </div>
 </section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Naimish <span>Kakkad</span></div>
+  <div class="footer-right">Ottawa, ON · Principal Architect · Payments &amp; Fintech</div>
+</footer>
 
 </body>
 </html>
