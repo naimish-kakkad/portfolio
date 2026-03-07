@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naimish Kakkad | Principal Architect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- Global Styles --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f9f9f9; color: #111; line-height: 1.6; }
+    a { text-decoration: none; color: #0a66c2; }
+    section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; }
+    h1, h2, h3 { margin-bottom: 20px; }
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; color: #0a66c2; }
+    h3 { font-size: 1.5rem; }
+    p { margin-bottom: 15px; }
+    button { padding: 10px 20px; background: #0a66c2; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #084c8d; }
+
+    /* --- Header / Hero --- */
+    header { background: #0a66c2; color: white; padding: 100px 20px; text-align: center; }
+    header h1 { font-size: 3rem; }
+    header p { font-size: 1.2rem; margin-top: 10px; }
+
+    /* --- Sections --- */
+    .skills, .projects, .experience, .contact { background: white; margin-bottom: 40px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 40px 20px; }
+    .skill-list, .project-list, .exp-list { display: flex; flex-wrap: wrap; gap: 15px; }
+    .skill-item, .project-item, .exp-item { flex: 1 1 calc(50% - 20px); background: #f1f1f1; padding: 15px; border-radius: 8px; }
+    .project-item img { max-width: 100%; border-radius: 5px; margin-bottom: 10px; }
+
+    /* --- Contact --- */
+    .contact a { display: inline-block; margin-right: 15px; }
+
+    /* --- Responsive --- */
+    @media(max-width: 768px){
+      .skill-item, .project-item, .exp-item { flex: 1 1 100%; }
+      header h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header / Hero Section -->
+<header>
+  <h1>Naimish Kakkad</h1>
+  <p>Principal Architect | AI & Payments Platforms | API-First Design Expert</p>
+  <button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View My Work</button>
+</header>
+
+<!-- About Section -->
+<section id="about">
+  <h2>About Me</h2>
+  <p>I have 13+ years designing large-scale banking and fintech platforms. I specialize in API-first platforms, payment infrastructure, AI-enabled risk analytics, and cloud-native integrations. I’ve led architecture strategy and engineering teams to deliver secure, scalable, and innovative financial systems.</p>
+</section>
+
+<!-- Skills Section -->
+<section class="skills" id="skills">
+  <h2>Skills & Tech Stack</h2>
+  <div class="skill-list">
+    <div class="skill-item"><strong>APIs & Platforms:</strong> REST, GraphQL, FastAPI, gRPC, Microservices</div>
+    <div class="skill-item"><strong>AI & ML:</strong> Python, scikit-learn, PyTorch, Transformers</div>
+    <div class="skill-item"><strong>Payments & FinTech:</strong> Real-time payments, ISO20022, ACH, Fraud Detection</div>
+    <div class="skill-item"><strong>Cloud & DevOps:</strong> AWS, Azure, Kubernetes, Docker, CI/CD</div>
+    <div class="skill-item"><strong>Security & Compliance:</strong> PCI-DSS, Encryption, Access Control</div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section class="projects" id="projects">
+  <h2>Projects</h2>
+  <div class="project-list">
+    <div class="project-item">
+      <img src="images/fraud_detection.png" alt="Fraud Detection Demo">
+      <h3>AI-Powered Fraud Detection</h3>
+      <p>Real-time transaction monitoring with anomaly detection and API exposure for alerting.</p>
+      <p><strong>Tech:</strong> Python, FastAPI, Kafka, Streamlit, Docker</p>
+      <p><a href="https://github.com/yourusername/ai-payment-fraud-detection" target="_blank">GitHub Repo</a> | <a href="#" target="_blank">Live Demo</a></p>
+    </div>
+    <div class="project-item">
+      <img src="images/payment_routing.png" alt="Payment Routing Demo">
+      <h3>Dynamic Payment Routing</h3>
+      <p>AI selects the optimal route for transactions based on speed and cost, simulating multi-processor payment flows.</p>
+      <p><strong>Tech:</strong> Python, scikit-learn, FastAPI, Docker</p>
+      <p><a href="https://github.com/yourusername/payment-routing-optimizer" target="_blank">GitHub Repo</a> | <a href="#" target="_blank">Live Demo</a></p>
+    </div>
+    <div class="project-item">
+      <img src="images/nlp_reconciliation.png" alt="Payment Reconciliation Demo">
+      <h3>AI Payment Reconciliation</h3>
+      <p>NLP-based matching of incoming/outgoing transactions and anomaly detection for reconciliation.</p>
+      <p><strong>Tech:</strong> Python, Transformers, Streamlit, Docker</p>
+      <p><a href="https://github.com/yourusername/payment-nlp-reconciliation" target="_blank">GitHub Repo</a> | <a href="#" target="_blank">Live Demo</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- Experience Section -->
+<section class="experience" id="experience">
+  <h2>Career Highlights</h2>
+  <div class="exp-list">
+    <div class="exp-item">
+      <h3>Principal Architect | Fintech & BFSI Platforms</h3>
+      <ul>
+        <li>Led API-first platform design for multi-bank digital payments.</li>
+        <li>Architected AI-driven anomaly detection for real-time transactions.</li>
+        <li>Managed distributed engineering teams across cloud-native projects.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:naimish@example.com">naimish@example.com</a></p>
+  <p>LinkedIn: <a href="https://www.linkedin.com/in/naimishkakkad" target="_blank">linkedin.com/in/naimishkakkad</a></p>
+  <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+  <p><button onclick="window.location.href='resume.pdf'">Download Resume</button></p>
+</section>
+
+</body>
+</html>
